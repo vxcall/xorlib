@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <string>
-#include <string_view>
 
 char key = 'd';
 namespace xorlib {
@@ -17,7 +16,6 @@ namespace xorlib {
         buffer += '\0';
         std::string result(buffer);
         delete [] buffer;
-
         return result;
     }
 }
