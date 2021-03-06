@@ -4,15 +4,20 @@
 
 #include <iostream>
 #include <string>
+#include <string_view>
 
 char key = 'd';
 namespace xorlib {
-    XORLIB_INLINE char* encrypt(const char* plaintext) {
-        char* result = new char[strlen(plaintext)+1];
+    XORLIB_INLINE std::string encrypt(const char* plaintext) {
+        char* buffer = new char[strlen(plaintext)+1];
         for (unsigned short i = 0;i <= strlen(plaintext);++i) {
             char cipher = plaintext[i] ^ key;
-            result[i] = cipher;
+            buffer[i] = cipher;
         }
+        buffer += '\0';
+        std::string result(buffer);
+        delete [] buffer;
+
         return result;
     }
 }
